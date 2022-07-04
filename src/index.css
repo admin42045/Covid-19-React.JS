@@ -1,13 +1,368 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/*
+ ========================
+  Variables
+ ========================
+*/
+
+:root{
+
+  /* primary color for background  */
+  --clr-primary-bg-1:rgb(226, 226, 226);
+
+/* primary dashboard heading color  */
+--clr-primary-h: rgb(56, 56, 56);
+
+/* primary color for paragraph  */
+--clr-primary-p: rgb(143, 143, 143);
+
+/* colors for Donut chart  & status */
+--clr-donut-active: rgb(12,23,237);
+--clr-donut-green: rgb(0, 128, 0);
+--clr-donut-grey: rgb(128, 128, 128);
+
+/* dark shades of table primary color  */
+--clr-livechart-h: #f4544b;
+--clr-livechart-r: #000000;
+
+/* colors for boxes   */
+  --clr-box-bg-1: #f1a6e0;
+  --clr-box-pn-1: #f70207;
+
+  --clr-box-bg-2: #cfedd3;
+  --clr-box-pn-2: #0909fa;
+  
+  --clr-box-bg-3: #cfedd3;
+  --clr-box-pn-3: #008000;
+ 
+  --clr-box-bg-4: #d1f2f2;
+  --clr-box-pn-4: #808080;
+  --clr-box-radius: 0.25rem;
+
+
+  --clr-map-h: #f70207;
+  --clr-updatep: #90ca8f;
+  --clr-updatetime: #008000;
+  --clr-float:right;
+  
+  --clr-white: #ffffff;
+
+/* more vaiables */
+ --transition: all 0.3s linear;
+ --spacing: 0.1rem;
+ --radius: 0.5rem;
+ --light-shadow: 0 5px 15px rgba(0,0,0,0.1);
+ --dark-shadow: 0 5px 15px rgba(0,0,0,0.4);
+ --max-width: 1170px;
+ --min-width: 1321px;
+ --fixed-width: 450px; 
+
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+
+
+
+/*
+ ========================
+  Global Styles
+ ========================
+*/
+
+*,
+::after,
+::before{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; 
+    background: var(--clr-primary-bg-1);
+    line-height: 1.5;
+    font-size: 0.875rem;
+    min-width: var(--min-width);
+    position: relative;
+    overflow: auto;
+  }
+ul{
+  list-style-type: none;
+}
+a{
+  text-decoration: none;
+}
+
+h1,h2,h3,h4{
+  letter-spacing: var(--spacing);
+  text-transform: capitalize;
+  line-height: 1.25;
+  margin-bottom:0.75rem;
+
+}
+
+
+h1{
+  font-size: 3rem;
+}
+
+h2{
+  font-size: 2rem;
+}
+h3{
+  font-size: 1.25;
+}
+
+h4{
+  font-size: 0.875rem;
+}
+
+p{
+  margin-bottom: 1.25;
+  color: var(--clr-primary-p);
+}
+
+
+@media screen and (min-width: 800px){
+  h1{
+    font-size: 4rem;
+  }
+  h2{
+    font-size: 2.5rem;
+  }
+  h3{
+    font-size: 1.75rem;
+  }
+  h4{
+    font-size: 1rem;
+  }
+
+  body{
+    font-size: 1rem;
+  }
+
+  h1,h2,h3,h4{
+    line-height: 1rem;
+  }
+
+}
+
+/* ============ Globale clasess ========== **/
+
+/* ====  section   ====*/
+.section {
+  width: 90vw;
+  margin: 0 auto;
+  max-width: var(--max-width);
+};
+
+@media screen and (min-width: 992){
+  .section{
+    width: 95vw;
+  }
+}
+
+
+main{
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container{
+  width: 95vw;
+  margin: 5rem 0;
+  max-width: var(--fixed-width);
+  background: var(--clr-white);
+  border-radius: var(--radius);
+  padding: 1.5rem 2rem;
+  box-shadow: var(--dark-shadow);
+}
+
+.header-wrapper {
+  margin: 1rem;
+  display: flex; 
+}
+
+.logo{
+  font-size: 1.5rem;
+  background-color: #000;
+  padding: 0.5rem;
+  color: yellow;
+  border-radius: 30%;
+  cursor: pointer;
+}
+
+.logo,.header-left, .header-right{
+  margin: 0.5rem 0.6rem;
+}
+
+.header-right{
+  margin-left: 4rem;
+}
+/*============== css of chart area  ===============*/
+.chart-area{
+  width: 44vw;
+  height: 27vh;
+  min-height: 150px;
+  margin: 3rem 5rem 1rem 5rem;
+  border-radius: var(--radius) ;
+  box-shadow: var(--light-shadow);
+  background: var(--clr-white);
+  border-color: transparent;
+  position:relative;
+  overflow: auto;
+}
+
+
+
+/*============== end css of chart ===============*/
+
+
+
+
+/*============== table css start ===============*/
+.table-wrapper
+{
+  width: 40vw;
+  min-width: 600px;
+  overflow-y: auto;
+  display: flex;
+  justify-content:center;
+  align-items: center;
+    margin: 3rem 5rem 1rem 5rem;
+  border-top-right-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+  box-shadow: var(--light-shadow);
+}
+table, td{
+  border-collapse: collapse;
+  padding: 0.7rem;
+  background:var(--clr-white);
+  border-radius: 0.8rem;
+  align-items:left;
+}
+thead , th{
+  width: 100%;
+  text-align: center;
+  padding: 0.6rem;
+  color: var(--clr-livechart-h);
+  font-weight: bold;
+}
+tbody, td{
+  color: var(--clr-livechart-r);
+  font-weight:bold;
+}
+
+table th{
+ position:sticky;
+top: 0;
+z-index: 2;
+}
+.table{
+  display:block;
+  max-height: 38.5rem;
+  width:100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+
+
+/*========== end table css =============*/
+
+
+
+/*========== start app-right side =============*/
+
+.app_right{
+  position: absolute;
+  top: 7.3rem;
+  left:53%;
+  margin-right: 1rem;
+  width: 44vw;
+  height: 815px;
+  border-radius: 0.5rem;
+  border: 1px solid black;
+  background: var(--clr-white);
+  border-color: transparent;
+  box-shadow: var(--light-shadow);
+}
+
+/*========== end app-right side =============*/
+
+
+
+/*================= start boxes update total ===================*/
+
+.box-wrapper{
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 2rem;
+  line-height: 0.6rem;
+  letter-spacing: normal;
+}
+.box-wrapper h4 {
+  text-transform: uppercase;
+  letter-spacing: normal;
+}
+
+.confirmed{
+  background:var(--clr-box-bg-1);
+  color: var(--clr-box-pn-1);
+  padding: 0.650rem;
+  border-radius: var(--clr-box-radius);
+  font-weight:500;
+}
+
+.active {
+  background: var(--clr-box-bg-2);
+  color: var(--clr-box-pn-2);
+  padding: 0.650rem;
+  border-radius: var(--clr-box-radius);
+  font-weight: 500;
+}
+
+
+.recovered {
+  background: var(--clr-box-bg-3);
+  color: var(--clr-box-pn-3);
+  padding: 0.650rem;
+border-radius: var(--clr-box-radius);
+  font-weight: 500;
+}
+
+
+.deceased {
+  background: var(--clr-box-bg-4);
+  color: var(--clr-box-pn-4);
+  padding: 0.650rem;
+border-radius: var(--clr-box-radius);
+  font-weight: 500;
+}
+
+/*=============end csss of boxes ================*/
+
+
+
+
+
+/*============== time update =================*/
+.time-update{
+  display:inline;
+  text-align: right;
+  margin: 2rem 2.2rem;
+  float: var(--clr-float);
+  color: var(--clr-updatetime);  
+  font-weight: bold;
+}
+.time-update h6{
+  font-size: 1.2rem;
+  color: var(--clr-updatep);
+}
+
+/*=============== end time update ===============*/
+
+.line-wrapper{
+ display: flex;
+ justify-content: flex-start;
 }
